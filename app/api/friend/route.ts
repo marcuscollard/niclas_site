@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 export const runtime = "nodejs";
 
 const SMTP_HOST = "mail-eu.smtp2go.com";
-const SMTP_PORT = 2525;
+const SMTP_PORT: number = 2525;
 const SMTP_USER = "niclas";
 const SMTP_PASS = "BKPZPa7ttzgbEtZY";
 const SMTP_FROM = "Niclas Collard <gmail@niclascollard.com>";
