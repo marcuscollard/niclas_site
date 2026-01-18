@@ -5,7 +5,7 @@ export const runtime = "nodejs";
 const SMTP_HOST = "mail-eu.smtp2go.com";
 const SMTP_PORT: number = 2525;
 const SMTP_USER = "niclas";
-const SMTP_PASS = "BKPZPa7ttzgbEtZY";
+const SMTP_PASS = process.env.SMTP_PASS;
 const SMTP_FROM = "Niclas Collard <gmail@niclascollard.com>";
 const SMTP_TO = "niclas.collard@gmail.com";
 const APPLICATION_NUMBER = "741,293";
@@ -18,6 +18,10 @@ export async function POST(request: Request) {
 
   if (!firstName || !lastName || !description) {
     return new Response("Missing fields", { status: 400 });
+  }
+
+  if (!SMTP_PASS) {
+    return new Response("SMTP credentials not configured", { status: 500 });
   }
 
   const transporter = nodemailer.createTransport({
